@@ -6,6 +6,12 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+const port = process.env.PORT || 3000;
+// start the server
+server.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
 app.use(express.static('public'));
 
 app.get('/updateLux', (req, res) => {
@@ -15,5 +21,4 @@ app.get('/updateLux', (req, res) => {
     res.sendStatus(200);
 });
 
-const PORT = 3000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
