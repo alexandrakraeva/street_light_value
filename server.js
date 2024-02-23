@@ -7,18 +7,16 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 const port = process.env.PORT || 3000;
-// start the server
+
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
 
-app.use(express.static('public'));
+app.use(express.static('public')); // Ensure your 'public' directory contains 'index.html' and 'app.js'
 
 app.get('/updateLux', (req, res) => {
-    const lux = req.query.lux; // Get the lux value from the query string
+    const lux = req.query.lux;
     console.log(`Lux value received: ${lux}`);
-    io.emit('lux', { value: lux }); // Emit the lux value to all connected WebSocket clients
+    io.emit('lux', { value: lux });
     res.sendStatus(200);
 });
-
-
