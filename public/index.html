@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Lux Meter</title>
+</head>
+<body>
+    <h1>Real-Time Lux Meter</h1>
+    <div id="luxValue">Waiting for data...</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>const socket = io();
+
+        socket.on('lux', function(data) {
+            document.getElementById('luxValue').textContent = `Lux: ${data.value}`;
+        });</script>
+</body>
+</html>
